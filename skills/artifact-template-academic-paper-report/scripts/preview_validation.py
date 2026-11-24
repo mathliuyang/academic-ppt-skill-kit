@@ -228,11 +228,18 @@ def verify_design(data, canonical_path, record_path, preview_dir=None, pptx_path
                 failures.append("final PPT slide count does not match design/canonical page count")
         except Exception as exc:
             failures.append(f"Cannot inspect reconstruction in PPT: {exc}")
-    # Existing verify_png owns output count and dimensions. Here check only that
-    # selected previews were not substituted for final reconstruction renders.
-    final_hashes = set()
+    # Existing verify_png owns output count and dimensions. Use a numeric
+    # filename suffix for optional page hashes, since Slide10 sorts before Slide2.
+    final_hashes, numbered_final_pngs = set(), {}
     if final_png_dir is not None and final_png_dir.is_dir():
-        final_hashes = {digest(p) for p in final_png_dir.glob("*.png") if p.is_file()}
+        for path in final_png_dir.glob("*.png"):
+            if not path.is_file():
+                continue
+            png_hash = digest(path)
+            final_hashes.add(png_hash)
+            page_suffix = re.search(r"([0-9]+)$", path.stem)
+            if page_suffix:
+                numbered_final_pngs.setdefault(int(page_suffix[1]), []).append((path, png_hash))
     selected_paths, selected_hashes = set(), set()
     base = record_path.parent
     for index, entry in enumerate(slides, 1):
@@ -304,6 +311,15 @@ def verify_design(data, canonical_path, record_path, preview_dir=None, pptx_path
                 raise ValueError("reconstruction must be an object")
             if reconstruction.get("status") != "complete" or type(reconstruction.get("final_slide")) is not int or reconstruction["final_slide"] != index:
                 issues.append("reconstruction must be complete and map to this final_slide")
+            if final_png_dir is not None and "final_png_sha256" in reconstruction:
+                expected_png_hash = reconstruction["final_png_sha256"]
+                candidates = numbered_final_pngs.get(index, [])
+                if not isinstance(expected_png_hash, str) or not re.fullmatch(r"[0-9a-f]{64}", expected_png_hash):
+                    issues.append("reconstruction.final_png_sha256 must be a lowercase SHA-256 hex digest")
+                elif len(candidates) != 1:
+                    issues.append(f"reconstruction.final_png_sha256 needs exactly one final PNG with filename ending in page number {index}")
+                elif expected_png_hash != candidates[0][1]:
+                    issues.append(f"reconstruction.final_png_sha256 does not match final PNG {candidates[0][0].name}")
             if not isinstance(reconstruction.get("comparison_observations"), str) or not reconstruction["comparison_observations"].strip():
                 issues.append("reconstruction comparison_observations must be nonempty")
             regions = reconstruction.get("regions")
@@ -346,6 +362,11 @@ def verify_design(data, canonical_path, record_path, preview_dir=None, pptx_path
                     except (ValueError, KeyError, IndexError, TypeError) as exc:
                         issues.append(f"region {region_id}: invalid canonical_source: {exc}")
                 else:
+                    check_transparency = False
+                    if kind == "auxiliary_image" and "transparent_background" in region:
+                        check_transparency = region["transparent_background"]
+                        if type(check_transparency) is not bool:
+                            issues.append(f"region {region_id}: transparent_background must be a boolean")
                     asset = resolve_path(region.get("asset_path"), base)
                     if not asset.is_file() or digest(asset) != region.get("asset_sha256"):
                         issues.append(f"region {region_id}: image asset must exist with matching asset_sha256")
@@ -353,6 +374,17 @@ def verify_design(data, canonical_path, record_path, preview_dir=None, pptx_path
                         issues.append(f"region {region_id}: a selected full-page design preview cannot be a reconstruction image asset")
                     elif inventory is not None and index <= len(inventory) and region["asset_sha256"] not in inventory[index - 1]["image_hashes"]:
                         issues.append(f"region {region_id}: original asset bytes are not embedded on this final PPT slide")
+                    elif check_transparency is True:
+                        try:
+                            with Image.open(asset) as image:
+                                if image.format != "PNG":
+                                    issues.append(f"region {region_id}: transparent_background requires a PNG asset")
+                                else:
+                                    low, high = image.convert("RGBA").getchannel("A").getextrema()
+                                    if low != 0 or high == 0:
+                                        issues.append(f"region {region_id}: transparent_background requires fully transparent pixels and nontransparent foreground")
+                        except (OSError, ValueError, Image.DecompressionBombError) as exc:
+                            issues.append(f"region {region_id}: cannot check transparent_background: {exc}")
             if not native_counts["native_text"]:
                 issues.append("reconstruction must include canonical native_text; an all-image page is not editable")
             if inventory is not None and index <= len(inventory):

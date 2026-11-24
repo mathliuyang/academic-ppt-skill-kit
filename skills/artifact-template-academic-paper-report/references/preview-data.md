@@ -6,7 +6,7 @@
 
 ## 数据约定
 
-顶层保存 `schema_version: 1`、`producer: "image_gen.imagegen"`、`report_json_sha256` 和 `slides`。报告哈希是准确输入 JSON 文件的完整字节 SHA-256，不是重新序列化后的哈希；报告改变后，应复核设计是否仍匹配，再更新记录。`slides` 按实际 PPT 页序连续编号 1 至 N，封面和结束页同样保存一条。
+顶层保存 `schema_version: 1`、`producer: "image_gen.imagegen"`、`report_json_sha256` 和 `slides`。报告哈希是准确输入 JSON 文件的完整字节 SHA-256，不是重新序列化后的哈希；报告改变后，应复核设计是否仍匹配，再更新记录。`slides` 按实际 PPT 页序连续编号 1 至 N，封面、目录和结束页同样各保存一条。
 
 以下是单页条目的示意，实际记录必须覆盖全部页面。路径示例、哈希和日期须替换为本次真实值。
 
@@ -46,7 +46,7 @@
 - `review.status: "accepted"` 表示布局选定，`observations` 明确写实际检查发现。生图错字、数值和科学图失真可作为重建待修事项，始终以准确逐页数据和论文原图为准。中间版可保留其他状态，但完成核验会拒绝它们。
 - `reconstruction.regions` 记录主要可编辑文字、表格、图表和独立图片。`kind` 仅支持 `native_text`、`native_table`、`native_chart`、`original_image`、`auxiliary_image`；框线、箭头等原生装饰可在重建说明中记录，无需为了登记而改为图片。`bbox` 是整页归一化的 `[x,y,width,height]`，区域须在页面内并有正面积；`id` 在本页唯一。
 - 原生对象的 `canonical_source` 是指向本页 `report.json` 内容的 JSON Pointer。文字只能指向 `/slides/0/title`、`/slides/0/screen_text` 或 `/slides/0/screen_text/0` 等标题或屏幕文案，禁止读取生图 OCR 或口述段落充当准确屏幕文本。数组索引从 0 开始。表格和图表可指向同页真实保存的数据或来源对象；结构检查不认证图表数值是否准确。
-- 两类图片都必须保存 `asset_path`、`asset_sha256` 和非空 `canonical_source`。科学图和品牌选 `original_image`，解释用生成插图选 `auxiliary_image`；前者来源由论文记录或品牌档案逐一核对。生成整页预览自身不能作为重建中的图片资产。辅助插图需从原始辅助素材文件独立放置；裁剪或重绘区域必须如实记录来源，不能冒充论文原图。
+- 两类图片都必须保存 `asset_path`、`asset_sha256` 和非空 `canonical_source`。科学图和品牌选 `original_image`，解释用生成插图选 `auxiliary_image`；前者来源由论文记录或品牌档案逐一核对。独立透明示意 PNG 的区域填 `transparent_background: true`。该布尔值只用于 `auxiliary_image`；核验器检查 PNG 格式、全透明背景像素及非零 alpha 的可见像素。`false` 或省略沿用旧记录检查。生成整页预览自身不能作为重建中的图片资产。辅助插图需从原始辅助素材文件独立放置；裁剪或重绘区域必须如实记录来源，不能冒充论文原图。
 - 品牌透明原图的原生调色不会改变嵌入 PNG 字节，仍记录为 `original_image`。区域可附 `display_effect` 或原生裁剪说明，并查看实际渲染。
 - `reconstruction.status` 完成为 `complete`，`final_slide` 与本页一致；`comparison_observations` 写实际渲染对照结果。每页至少一个原生文本区域。可选 `screen_text_sha256` 使用 UTF-8 的紧凑 JSON `{"title":...,"screen_text":[...]}`，`ensure_ascii=False,separators=(',', ':')`，键顺序如示例；报告文件总哈希已经必需，该字段仅便于逐页复核。
 
@@ -57,7 +57,7 @@
 - 顶层可保存 `reference_set_id`，对应参考库中的已选项；`common_style` 可保存该报告选定的公共组件及其适用页型、字体方案、边界与位置。涉及坐标时显式写明画布尺寸和单位，不能把案例中的像素值直接用于另一种页面尺寸。正文、总结和讨论页默认共享公共底部规范；封面、结束或备份页的另行选定页型分别标明，不把生成图偶发差异登记成新规范。
 - 区域可补充 `typography`，记录 `font_family`、`font_size_px`、`font_weight`、`color`、对齐及内边距；这些是本轮选定的重建参数，不能从截图字形猜测后写成已核实字体。混合字重或颜色在实际对象运行级样式中保留，并在核对说明中记录。
 - 图片区域可补充 `visible_image_bbox`，使用与 `bbox` 相同的归一化坐标，说明等比放置后实际可见图像的边界；`bbox` 仍是原组件边界。原生裁剪、显示效果和去除外部白边等操作另作显示记录，原始素材哈希不变。检查容器和可见图像的尺寸差异，避免以宽框掩盖过小原图。
-- `reconstruction` 可保存 `final_png_sha256` 和 `revision_notes`。局部修订时记录修改对象、原因、受影响页及所用核对证据；只有确认未改页最终文件或渲染与已审版本对应时，才沿用其原视觉记录。哈希相同可证明文件未变，不能替代该文件之前从未完成的视觉检查。
+- 新稿在 `reconstruction.final_png_sha256` 记录逐页最终渲染文件的完整 SHA-256，并使用 `slide-01.png` 等以页号结尾的文件名。字段对旧记录可选。提供 `--png-dir` 时，核验器按文件名结尾数字定位对应页，要求该页文件唯一并匹配小写十六进制哈希。可另存 `revision_notes`。局部修订时记录修改对象、原因、受影响页及所用核对证据；只有确认未改页最终文件或渲染与已审版本对应时，才沿用其原视觉记录。哈希相同可证明文件未变，不能替代该文件之前从未完成的视觉检查。
 
 当用户后续修改公共页脚或某一页型时，以当前要求更新重建参数和最终渲染，不重新填写 `generation.generated_at_utc` 或篡改原提示。`selected_preview` 仍指向真实历史生图，`comparison_observations` 说明当前认可成品与它的必要差异。过时预览可保留为内部追溯依据，不作为更新版成品或加入其ZIP；当前PNG也不能被填入 `generation` 冒充新生图。
 

@@ -2,6 +2,6 @@ interface:
   display_name: "学术汇报与项目答辩"
   short_description: "ImageGen 逐页设计后重建可编辑 PPT 和讲稿"
   icon_large: "./assets/preview.png"
-  default_prompt: "使用 $artifact-template-academic-paper-report。核验论文与原图，新稿按选定模板先用 ImageGen 生成并检查每一页完整设计稿，再程序化重建可编辑 PPTX，交付整套设计预览、同版 PDF 和逐页讲稿。全程不使用 Computer Use。"
+  default_prompt: "使用 $artifact-template-academic-paper-report。沿论文论证编排独立目录与逐页证据，按需准备透明示意图和官方标识。用 ImageGen 逐页设计，再程序化重建并对照，交付可编辑 PPTX、整套设计预览、同版 PDF 和逐页讲稿。"
 policy:
   allow_implicit_invocation: true

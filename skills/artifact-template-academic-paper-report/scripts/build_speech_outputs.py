@@ -7,6 +7,7 @@ import json
 import os
 import re
 import sys
+from math import floor
 from pathlib import Path
 
 from report_common import ReportError, emphasis_runs, load_report, sha256, timing_summary
@@ -181,21 +182,32 @@ def layout_pdf(data, font_size: float):
     left, right, top, bottom = 56.0, 32.0, 45.0, 44.0
     width = page_width - left - right
     leading = font_size * 1.36
+    first_baseline = page_height - top - font_size
     pages = [[]]
-    y = page_height - top - font_size
+    y = first_baseline
     active_slide = None
     for slide in data["slides"]:
-        for paragraph_index, text in enumerate(slide["paragraphs"]):
+        for text in slide["paragraphs"]:
             lines = wrap_paragraph(text, slide["emphasis"], font_size, width)
-            for line in lines:
-                if y < bottom:
+            offset = 0
+            while offset < len(lines):
+                remaining = len(lines) - offset
+                available = max(0, floor((y - bottom) / leading + 1e-9) + 1)
+                count = min(available, remaining)
+                # Keep at least two lines on each page when a paragraph spans pages.
+                if count and remaining - count == 1:
+                    count -= 1
+                if count < min(2, remaining):
                     pages.append([])
-                    y = page_height - top - font_size
+                    y = first_baseline
                     active_slide = None
-                marker = slide["slide"] if active_slide != slide["slide"] else None
-                pages[-1].append({"y": y, "line": line, "marker": marker, "slide": slide["slide"]})
-                active_slide = slide["slide"]
-                y -= leading
+                    continue
+                for line in lines[offset:offset + count]:
+                    marker = slide["slide"] if active_slide != slide["slide"] else None
+                    pages[-1].append({"y": y, "line": line, "marker": marker, "slide": slide["slide"]})
+                    active_slide = slide["slide"]
+                    y -= leading
+                offset += count
             y -= 5
         y -= 6
     return pages, left
