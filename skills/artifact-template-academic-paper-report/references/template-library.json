@@ -1,16 +1,21 @@
 {
-  "default": "membrane-demo",
-  "templates": [
+  "schema_version": 1,
+  "path_base": "skill_directory",
+  "default_reference_id": "nsfc-seminar-final",
+  "references": [
     {
-      "id": "membrane-demo",
-      "reference": "../assets/reference.pptx",
-      "preview": "../assets/preview.png",
-      "aspect_ratio": "16:9"
+      "id": "nsfc-seminar-final",
+      "label": "国自然衍生的最终组会风格",
+      "reference": "assets/reference.pptx",
+      "preview": "assets/preview.png",
+      "page_count": 8,
+      "details": "references/final-report-style.md"
     },
     {
       "id": "nsfc-components",
+      "label": "国自然原参考的公开答辩组件",
       "skill": "nsfc-ppt-component-library",
-      "aspect_ratio": "16:9"
+      "reference_in_skill": "assets/components-candidate.pptx"
     }
   ]
 }

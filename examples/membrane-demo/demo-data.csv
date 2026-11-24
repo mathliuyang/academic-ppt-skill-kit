@@ -1,6 +1,6 @@
-time_h,control_retention_percent,crosslinked_retention_percent
-0,100,100
-6,97,99
-12,94,98
-18,92,97
-24,89,96
+time_h,uncrosslinked_retention_pct,crosslinked_retention_pct,uncrosslinked_size_change_pct,crosslinked_size_change_pct
+0,100,100,0,0
+6,97,99,2,1
+12,94,98,4,2
+18,92,97,6,3
+24,89,96,8,4

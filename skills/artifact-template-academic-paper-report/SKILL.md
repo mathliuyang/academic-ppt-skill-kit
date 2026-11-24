@@ -25,7 +25,8 @@ description: "依据用户提供的论文 PDF、资料和要求，自动组织�
 
 ## 按需读取
 
-- 选参考及排版：查看用户的模板或[自带可编辑蓝白参考](assets/reference.pptx)和[页型索引](references/template-library.json)。
+- 选参考及排版：查看用户的模板或[按最终组会稿重建的可编辑参考](assets/reference.pptx)和[页型索引](references/template-library.json)。
+- 国自然原模板与最终组会样式是不同用途的参考；先读[样式选择与页面锚点](references/final-report-style.md)，按当前参考定位封面、目录、图表及总结。
 - PDF 论文自动制作及本次经验：读[程序化制作与交付](references/automated-workflow.md)。仅在用户要求整页生图设计或适用该模式时读[整页生图与可编辑重建](references/imagegen-preview-first.md)，对应记录见[逐页设计记录](references/preview-data.md)。
 - 理解、选图和组织背景：读[证据与讲述组织](references/evidence-and-narrative.md)。表述要贴合本次结果，保留原文专业术语、数值与限制。
 - 选择身份：采用当前确认的汇报信息及授权素材。页码、标识、标题和底线以本套报告公共框架为准。

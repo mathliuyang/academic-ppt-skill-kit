@@ -9,17 +9,19 @@
 
 ## 看成品
 
-[下载可编辑示例 PPTX](examples/membrane-demo/report.pptx) · [查看示例 PDF](examples/membrane-demo/report.pdf) · [查看配套讲稿](examples/membrane-demo/README.md) · [下载七页可编辑答辩组件](skills/nsfc-ppt-component-library/assets/components-candidate.pptx)
+[下载可编辑示例 PPTX](examples/membrane-demo/report.pptx) · [查看示例 PDF](examples/membrane-demo/report.pdf) · [查看配套讲稿](examples/membrane-demo/README.md) · [下载国自然答辩组件 PPTX](skills/nsfc-ppt-component-library/assets/components-candidate.pptx)
 
-![原创合成示例的页面总览](examples/membrane-demo/preview.png)
+![按最终组会稿重建的八页示例](examples/membrane-demo/preview.png)
 
-该示例的数值和图示为演示构造，标明了示例条件。可下载 PPTX 体验原生编辑和逐页备注。
+公开示例按最终双论文组会稿的封面、红蓝目录、三栏问题页、策略表、图证页、对照、总结和致谢重建。数据为合成教学数据，标识是演示占位。另一份答辩组件 PPTX 对应国自然原模板的典型页型，供项目答辩复用。[预览国自然原模板组件](skills/nsfc-ppt-component-library/assets/components-reference.pdf)
+
+已提供你自己的 PPTX 时，以所给模板或认可的最终稿为准。样式分别见[组会成品锚点](skills/artifact-template-academic-paper-report/references/final-report-style.md)和[国自然组件锚点](skills/nsfc-ppt-component-library/references/components.md)。
 
 ## 安装
 
 在 Codex 对话中发送：
 
-> 用 $skill-installer 从 mathliuyang/academic-ppt-skill-kit 安装 skills/artifact-template-academic-paper-report和 skills/nsfc-ppt-component-library。
+> 用 $skill-installer 从 mathliuyang/academic-ppt-skill-kit 安装 skills/artifact-template-academic-paper-report 和 skills/nsfc-ppt-component-library。
 
 也可以在终端运行：
 
@@ -35,7 +37,7 @@ python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/inst
 
 **上传论文 PDF**
 
-> 用 $artifact-template-academic-paper-report 做一份 20 分钟中文组会 PPT，面向材料专业研究生。用国自然答辩组件的蓝白红风格，保留论文原图，关键结果用可编辑中文标注，提供 PPTX、预览 PDF、Word 和大字讲稿 PDF。
+> 用 $artifact-template-academic-paper-report 做一份 20 分钟中文组会 PPT，面向材料专业研究生。沿用最终组会稿的蓝白红版式，保留论文原图，关键结果用可编辑中文标注，提供 PPTX、预览 PDF、Word 和大字讲稿 PDF。
 
 **在旧报告里换论文**
 
