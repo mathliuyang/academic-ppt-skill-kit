@@ -1,10 +1,14 @@
-# 国自然原模板的公开答辩组件
+# 国自然答辩模板与速用组件
 
-[可编辑组件](../assets/components-candidate.pptx) · [样例 PDF](../assets/components-reference.pdf) · [八页总览](../assets/components-preview.png)
+[完整 39 页可编辑脱敏模板](../assets/nsfc-reference-full.pptx) · [39 页逐页 PDF 预览](../assets/nsfc-reference-full.pdf)
 
-原参考是 39 页国自然项目答辩稿。公开组件保留代表页的居中蓝色章标题、带线托底的封面、红色挑战标签、三栏技术方案、成果边框及致谢结构。使用占位文字和自绘图替换了原内容。
+完整公开模板沿用原稿 39 页的页序和主要版式，将原项目题目、个人与机构信息、原有图像和数据等替换为通用占位。用户说“直接用国自然答辩模板”且没有另给原稿时，从这份完整模板选页。
 
-| 公开页 | 原参考页 | 组件 |
+[8 页可编辑组件](../assets/components-candidate.pptx) · [组件 PDF](../assets/components-reference.pdf) · [8 页总览](../assets/components-preview.png)
+
+下表是 8 页速用组件与完整模板的页码对照。速用组件包含居中蓝色章标题、带线托底的封面、红色挑战标签、三栏技术方案、成果边框及致谢结构。
+
+| 速用组件页 | 完整模板页 | 组件 |
 | --- | --- | --- |
 | 1 | 1 | 白底与通栏蓝色标题带，主信息及署名上下分区 |
 | 2 | 2 | 纵排提纲标题与横向章节条 |

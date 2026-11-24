@@ -5,17 +5,21 @@
 | 你有的材料 | 使用的技能 | 用途 |
 | --- | --- | --- |
 | 论文 PDF、一份要修改的 PPTX，或两者都有 | [论文汇报](skills/artifact-template-academic-paper-report/SKILL.md) | 提取原图、组织内容、换入研究章节、检查子图和逐字稿 |
-| 想套用蓝白红科研答辩风格 | [科研答辩组件库](skills/nsfc-ppt-component-library/SKILL.md) | 可编辑页型、色卡和已认可版式复用，可与论文汇报技能一起调用 |
+| 想直接使用国自然答辩模板 | [国自然科研答辩模板库](skills/nsfc-ppt-component-library/SKILL.md) | 完整 39 页脱敏模板、8 页速用组件和色卡，可与论文汇报技能一起使用 |
 
 ## 看成品
 
-[下载可编辑示例 PPTX](examples/membrane-demo/report.pptx) · [查看示例 PDF](examples/membrane-demo/report.pdf) · [查看配套讲稿](examples/membrane-demo/README.md) · [下载国自然答辩组件 PPTX](skills/nsfc-ppt-component-library/assets/components-candidate.pptx)
+**国自然答辩**：[完整 39 页可编辑脱敏模板](skills/nsfc-ppt-component-library/assets/nsfc-reference-full.pptx) · [39 页 PDF 预览](skills/nsfc-ppt-component-library/assets/nsfc-reference-full.pdf) · [8 页速用组件](skills/nsfc-ppt-component-library/assets/components-candidate.pptx)
+
+**学术组会**：[8 页可编辑示例](examples/membrane-demo/report.pptx) · [示例 PDF](examples/membrane-demo/report.pdf) · [配套讲稿](examples/membrane-demo/README.md)
 
 ![按最终组会稿重建的八页示例](examples/membrane-demo/preview.png)
 
-公开示例按最终双论文组会稿的封面、红蓝目录、三栏问题页、策略表、图证页、对照、总结和致谢重建。数据为合成教学数据，标识是演示占位。另一份答辩组件 PPTX 对应国自然原模板的典型页型，供项目答辩复用。[预览国自然原模板组件](skills/nsfc-ppt-component-library/assets/components-reference.pdf)
+完整国自然模板沿用 39 页原稿的页序和主要版式。原项目题目、个人与机构信息、原有图像和数据等敏感内容已替换为通用占位。需要快速挑页时，也可使用 [8 页速用组件预览](skills/nsfc-ppt-component-library/assets/components-reference.pdf)。
 
-已提供你自己的 PPTX 时，以所给模板或认可的最终稿为准。样式分别见[组会成品锚点](skills/artifact-template-academic-paper-report/references/final-report-style.md)和[国自然组件锚点](skills/nsfc-ppt-component-library/references/components.md)。
+公开组会示例按最终双论文组会稿的封面、红蓝目录、三栏问题页、策略表、图证页、对照、总结和致谢重建。数据为合成教学数据，标识是演示占位。
+
+说“直接用国自然答辩模板”时，优先使用你提供的原稿。缺少原稿时，使用仓库的 39 页脱敏模板。普通论文组会沿用组会示例。样式分别见[组会成品锚点](skills/artifact-template-academic-paper-report/references/final-report-style.md)和[国自然组件锚点](skills/nsfc-ppt-component-library/references/components.md)。
 
 ## 安装
 

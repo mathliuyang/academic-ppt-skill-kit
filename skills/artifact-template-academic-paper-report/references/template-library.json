@@ -12,10 +12,20 @@
       "details": "references/final-report-style.md"
     },
     {
-      "id": "nsfc-components",
-      "label": "国自然原参考的公开答辩组件",
+      "id": "nsfc-reference-full",
+      "label": "国自然项目答辩公开脱敏模板",
       "skill": "nsfc-ppt-component-library",
-      "reference_in_skill": "assets/components-candidate.pptx"
+      "reference_in_skill": "assets/nsfc-reference-full.pptx",
+      "preview_in_skill": "assets/nsfc-reference-full.pdf",
+      "page_count": 39,
+      "use_for": "明确要求国自然答辩模板且未提供源 PPTX"
+    },
+    {
+      "id": "nsfc-components",
+      "label": "国自然模板八页速用组件",
+      "skill": "nsfc-ppt-component-library",
+      "reference_in_skill": "assets/components-candidate.pptx",
+      "page_count": 8
     }
   ]
 }
