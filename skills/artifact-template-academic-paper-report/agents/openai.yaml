@@ -1,7 +1,7 @@
 interface:
   display_name: "学术汇报与项目答辩"
-  short_description: "论文 PDF 到可编辑 PPT 和同步讲稿，默认程序化制作"
+  short_description: "ImageGen 逐页设计后重建可编辑 PPT 和讲稿"
   icon_large: "./assets/preview.png"
-  default_prompt: "使用 $artifact-template-academic-paper-report。根据提供的论文 PDF 和要求，核验论文与原图，按选定模板程序化制作可编辑 PPT、逐页备注和讲稿并检查交付；默认不使用 computer use，只有必要信息缺失或用户要求先审核时才暂停。"
+  default_prompt: "使用 $artifact-template-academic-paper-report。核验论文与原图，新稿按选定模板先用 ImageGen 生成并检查每一页完整设计稿，再程序化重建可编辑 PPTX，交付整套设计预览、同版 PDF 和逐页讲稿。全程不使用 Computer Use。"
 policy:
   allow_implicit_invocation: true

@@ -1,6 +1,6 @@
 # 学术报告 PPT 技能套件
 
-从论文 PDF 和汇报要求出发，在 Codex 中制作带逐页备注的可编辑 PowerPoint。也可以在已有汇报中替换一篇论文、补齐原图，或只改指定几页的版式。工作流使用程序化制作和渲染检查。
+从论文 PDF 和汇报要求出发，在 Codex 中制作带逐页备注的可编辑 PowerPoint。也可以在已有汇报中替换一篇论文、补齐原图，或只改指定几页的版式。新稿默认先用 ImageGen 做成一页一张的整页设计预览，再用可编辑对象重建并渲染检查。
 
 | 你有的材料 | 使用的技能 | 用途 |
 | --- | --- | --- |
@@ -37,7 +37,7 @@ python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/inst
 
 **上传论文 PDF**
 
-> 用 $artifact-template-academic-paper-report 做一份 20 分钟中文组会 PPT，面向材料专业研究生。沿用最终组会稿的蓝白红版式，保留论文原图，关键结果用可编辑中文标注，提供 PPTX、预览 PDF、Word 和大字讲稿 PDF。
+> 用 $artifact-template-academic-paper-report 做一份 20 分钟中文组会 PPT，面向材料专业研究生。沿用最终组会稿的蓝白红版式，先用 ImageGen 出每页完整设计，再做成可编辑稿。保留论文原图，关键结果用可编辑中文标注，提供 PPTX、预览 PDF、Word 和大字讲稿 PDF。
 
 **在旧报告里换论文**
 
@@ -46,6 +46,13 @@ python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/inst
 **只改局部**
 
 > 只重排第 4、7 页，保留原文和备注，参照第 5 页的配色。统一全篇可见页码，再给我 PPTX 和同版 PDF。
+
+## 新稿制作顺序
+
+1. 读 PDF 并核对每页的标题、主图、数据和讲述顺序。
+2. 用选定模板作参考，让 ImageGen 生成每一页的完整设计稿，核对整套预览。
+3. 按设计稿程序化重建原生文本、图表、表格、图注和标注，放回真实论文原图。
+4. 实际渲染对照设计稿，核对页码和逐页讲稿。交付整套预览、可编辑 PPTX 及配套文件。
 
 ## 运行环境与检查
 

@@ -1,6 +1,6 @@
 # 整页生图设计记录与结构核验
 
-本文件只适用于实际采用逐页 imagegen 设计的任务；一般程序化制作不要求生图。该模式下先确定准确内容，真实调用 `image_gen.imagegen` 并审阅预览，再重建可编辑 PPT。`report.json` 继续使用原 `schema_version: 1`；预览与重建信息另存 `design-record.json`。仅在实际采用此模式时使用相应严格参数。
+新稿和整套重设计默认采用逐页 ImageGen 设计。该流程先确定准确内容，真实调用 `image_gen.imagegen` 并审阅预览，再重建可编辑 PPT。`report.json` 继续使用原 `schema_version: 1`；预览与重建信息另存 `design-record.json`。仅在实际采用此模式时使用相应严格参数。
 
 所选参考从[参考库](template-library.json)解析。`artifact-template.json` 保留默认参考入口，补充案例属于可选视觉依据；引用某个案例不代表沿用其研究事实、身份、页数或讲述时间。当前认可的PPT及最终渲染与原始生图分别记录，后续修订不改写历史生成记录。
 

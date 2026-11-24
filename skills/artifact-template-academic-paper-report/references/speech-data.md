@@ -4,7 +4,7 @@
 
 PPT每页备注只保存本页 `paragraphs` 的完整口述，按原段落顺序直接呈现。不要附加页标题、计划用时、提示、图源、书目、URL、文件路径、JSON、内部检查，或“【口述正文】／【提示】／【资料来源】”等标签；也不把它们挪到同页的额外备注文本框。上述信息分别保留在 `duration_seconds`、`cues`、`sources`、`metadata` 和工作记录。Word与大字稿沿用各自已选格式，不因清理PPT备注而重建未变正文。
 
-实际使用生图设计时，将生成来源、版本与区域映射另存 `design-record.json`，见 `preview-data.md`；一般程序化制作不强制生图。现有 `schema_version: 1` 与讲稿CLI不变，不从生图/OCR覆盖文案或数据。
+新稿的逐页 ImageGen 设计来源、版本与区域映射另存 `design-record.json`，见 `preview-data.md`。仅修订讲稿沿用原设计。现有 `schema_version: 1` 与讲稿CLI不变，不从生图/OCR覆盖文案或数据。
 
 ## 规范数据
 
