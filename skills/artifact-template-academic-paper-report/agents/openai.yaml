@@ -1,0 +1,7 @@
+interface:
+  display_name: "学术汇报与项目答辩"
+  short_description: "论文 PDF 到可编辑 PPT 和同步讲稿，默认程序化制作"
+  icon_large: "./assets/preview.png"
+  default_prompt: "使用 $artifact-template-academic-paper-report。根据提供的论文 PDF 和要求，核验论文与原图，按选定模板程序化制作可编辑 PPT、逐页备注和讲稿并检查交付；默认不使用 computer use，只有必要信息缺失或用户要求先审核时才暂停。"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,16 @@
+{
+  "default": "membrane-demo",
+  "templates": [
+    {
+      "id": "membrane-demo",
+      "reference": "../assets/reference.pptx",
+      "preview": "../assets/preview.png",
+      "aspect_ratio": "16:9"
+    },
+    {
+      "id": "nsfc-components",
+      "skill": "nsfc-ppt-component-library",
+      "aspect_ratio": "16:9"
+    }
+  ]
+}

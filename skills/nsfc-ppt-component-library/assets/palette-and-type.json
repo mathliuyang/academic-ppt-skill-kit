@@ -1,0 +1,67 @@
+{
+  "source": "本套公开组件的色卡。以实际使用的模板渲染校准。",
+  "canvas_in": [
+    13.333333,
+    7.5
+  ],
+  "font": "Microsoft YaHei",
+  "font_pt": {
+    "cover_title": 40,
+    "cover_presenter": 28,
+    "heading": 32,
+    "long_heading": 28,
+    "body": 20,
+    "three_column_label": 19.15,
+    "figure_caption": 12.4
+  },
+  "colors": {
+    "heading_blue": {
+      "hex": "#005AA6",
+      "rgb": [
+        0,
+        90,
+        166
+      ]
+    },
+    "bar_blue": {
+      "hex": "#0070C0",
+      "rgb": [
+        0,
+        112,
+        192
+      ]
+    },
+    "emphasis_red": {
+      "hex": "#C00000",
+      "rgb": [
+        192,
+        0,
+        0
+      ]
+    },
+    "pale_blue": {
+      "hex": "#D2DEEF",
+      "rgb": [
+        210,
+        222,
+        239
+      ]
+    },
+    "black": {
+      "hex": "#000000",
+      "rgb": [
+        0,
+        0,
+        0
+      ]
+    },
+    "white": {
+      "hex": "#FFFFFF",
+      "rgb": [
+        255,
+        255,
+        255
+      ]
+    }
+  }
+}
